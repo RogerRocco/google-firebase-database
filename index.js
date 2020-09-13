@@ -20,6 +20,7 @@ app.get('/', function (req, res) {
     res.send(result)
 })
 
+
 // app.get('/', function (req, res) {
 //     ref.orderByChild("age").once("value", function (snapshot) {
 //         result = [];
