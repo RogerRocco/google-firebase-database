@@ -14,22 +14,15 @@ admin.initializeApp({
 const db = admin.database();
 var ref = db.ref("contact");
 
-
 app.get('/', function (req, res) {
-    result = [];
-    res.send(result)
+    ref.orderByChild("age").once("value", function (snapshot) {
+        result = [];
+        snapshot.forEach(element => {
+            result.push(element.val())
+        });
+        res.send(result)
+    })
 })
-
-
-// app.get('/', function (req, res) {
-//     ref.orderByChild("age").once("value", function (snapshot) {
-//         result = [];
-//         snapshot.forEach(element => {
-//             result.push(element.val())
-//         });
-//         res.send(result)
-//     })
-// })
 
 app.get('/add', function (req, res) {
     db.ref('contact').push({
